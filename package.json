@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/kobalab/tenhou-log#readme",
   "devDependencies": {
+    "istanbul": "^0.4.5",
     "mocha": "^6.2.2"
   }
 }
