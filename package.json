@@ -5,6 +5,10 @@
   "publishConfig": {
     "access": "public"
   },
+  "bin": {
+    "tenhou-log": "./command.js",
+    "tenhou-log-server": "./server.js"
+  },
   "scripts": {
     "test": "mocha -u tdd --timeout=5000",
     "test:cover": "istanbul cover node_modules/mocha/bin/_mocha -- -u tdd --no-timeouts"
