@@ -27,5 +27,8 @@
   "devDependencies": {
     "istanbul": "^0.4.5",
     "mocha": "^6.2.2"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }
