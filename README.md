@@ -26,9 +26,7 @@ $ curl -s http://127.0.0.1:8001/tenhou-log/2016031822gm-0009-10011-896da481.json
 変換サーバに割り当てるコンテンツの場所 (デフォルトではコンテンツは割り当てない)
 
 ## ライセンス
-Copyright© 2019 Satoshi Kobayashi<br>
-Released under the MIT license<br>
-https://github.com/kobalab/tenhou-log/blob/master/LICENSE
+[MIT](https://github.com/kobalab/tenhou-log/blob/master/LICENSE)
 
 ## 作者
 [Satoshi Kobayashi](https://github.com/kobalab)
