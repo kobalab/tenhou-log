@@ -27,6 +27,12 @@ app.get(`${base}:id.json`, (req, res, next)=>{
         .then(xml=>res.json(convlog(xml, id)))
         .catch(e=>next());
 });
+app.get(`${base}:id.xml`, (req, res, next)=>{
+    let id = req.params.id;
+    getlog(id)
+        .then(xml=>res.type('application/xml').end(xml))
+        .catch(e=>next());
+});
 if (docs) app.use(express.static(docs));
 app.use((req, res)=>res.status(404).send('<h1>Not Found</h1>'));
 
