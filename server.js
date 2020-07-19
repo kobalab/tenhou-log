@@ -39,4 +39,8 @@ app.use((req, res)=>res.status(404).send('<h1>Not Found</h1>'));
 app.listen(port,
     ()=>console.log(
         `Server start on http://127.0.0.1:${port}${base}`,
-        docs ? `(docroot=${docs})` : ''));
+        docs ? `(docroot=${docs})` : '')
+).on('error', (e)=>{
+    console.error(''+e);
+    process.exit(-1);
+});
