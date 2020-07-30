@@ -7,7 +7,8 @@ const getlog  = require('./lib/getlog');
 const convlog = require('./lib/convlog');
 
 const argv = yargs
-    .usage('Usage: $0 [--xml] <logid>')
+    .usage('Usage: $0 [--title=title] [--xml] <logid>')
+    .option('title', { alias: 't', description: 'Title (optional)'})
     .option('xml', { alias: 'x', boolean: true, description: 'No conversion' })
     .demandCommand(1)
     .argv;
@@ -15,6 +16,12 @@ const argv = yargs
 let id = argv._[0];
 
 getlog(id)
-    .then(xml=>process.stdout.write(
-        argv.xml ? xml : JSON.stringify(convlog(xml, id))))
+    .then(xml=>{
+            if (argv.xml) process.stdout.write(xml);
+            else {
+                let json = convlog(xml, id);
+                if (argv.title) json.title = argv.title;
+                process.stdout.write(JSON.stringify(json));
+            }
+        })
     .catch(()=>{ console.error(`${id}: not found.`); process.exit(-1) });
