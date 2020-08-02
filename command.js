@@ -14,14 +14,9 @@ const argv = yargs
     .argv;
 
 let id = argv._[0];
+let title = argv.title ? ':' + argv.title : id;
 
 getlog(id)
-    .then(xml=>{
-            if (argv.xml) process.stdout.write(xml);
-            else {
-                let json = convlog(xml, id);
-                if (argv.title) json.title = argv.title;
-                process.stdout.write(JSON.stringify(json));
-            }
-        })
+    .then(xml=>process.stdout.write(
+        argv.xml ? xml : JSON.stringify(convlog(xml, title))))
     .catch(()=>{ console.error(`${id}: not found.`); process.exit(-1) });
