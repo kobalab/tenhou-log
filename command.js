@@ -37,7 +37,7 @@ function convlogs() {
     getlog(id)
         .then(xml=>{
             paipu.push(argv.xml ? xml : convlog(xml, title));
-            convlogs();
+            setTimeout(convlogs, 0);
         })
         .catch(()=>{
             console.error(`${id}: not found.`);
