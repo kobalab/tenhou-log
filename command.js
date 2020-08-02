@@ -13,8 +13,8 @@ const argv = yargs
     .demandCommand(1)
     .argv;
 
-let id = argv._[0];
-let title = argv.title ? ':' + argv.title : id;
+let [ , id, title ] = argv._[0].match(/^(.*?)(:.*)?$/);
+if (! title) title = argv.title ? ':' + argv.title : id;
 
 getlog(id)
     .then(xml=>process.stdout.write(
