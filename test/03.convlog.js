@@ -45,9 +45,10 @@ suite('convlog()', ()=>{
         test('テストプレイ', ()=>{
             assert.equal(convlog('<GO type="0"/>').title,   '四般東喰赤－')});
         test('ログIDつき', ()=>{
-            assert.equal(convlog('<GO type="9"/>', 'TITLE').title,
-                         '四般南喰赤\nTITLE')
-        });
+            assert.equal(convlog('<GO type="9"/>', 'LOGID').title,
+                         '四般南喰赤\nLOGID')});
+        test('牌譜名を指定', ()=>{
+            assert.equal(convlog('<GO type="9"/>', ':TITLE').title, 'TITLE')});
     });
 
     suite('UN', ()=>{

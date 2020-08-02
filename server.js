@@ -21,10 +21,11 @@ const docs = argv.docroot;
 
 const app = express();
 
-app.get(`${base}:id.json`, (req, res, next)=>{
+app.get(`${base}:id.json(\::title)?`, (req, res, next)=>{
     let id = req.params.id;
+    let title = req.params.title ? ':' + req.params.title : id;
     getlog(id)
-        .then(xml=>res.json(convlog(xml, id)))
+        .then(xml=>res.json(convlog(xml, title)))
         .catch(e=>next());
 });
 app.get(`${base}:id.xml`, (req, res, next)=>{
