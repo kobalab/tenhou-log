@@ -18,7 +18,7 @@ $ curl -s http://127.0.0.1:8001/tenhou-log/2016031822gm-0009-10011-896da481.json
 ```
 ## 使用方法
 
-### tenhou-log [--title=title] [--xml] *牌譜ID*
+### tenhou-log [--title=title] [--xml] *牌譜ID[ :牌譜タイトル ]* ...
 <dl>
 <dt>--title, -t</dt>
     <dd>牌譜タイトルを指定する<dd>

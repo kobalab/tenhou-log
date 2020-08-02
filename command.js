@@ -13,10 +13,36 @@ const argv = yargs
     .demandCommand(1)
     .argv;
 
-let [ , id, title ] = argv._[0].match(/^(.*?)(:.*)?$/);
-if (! title) title = argv.title ? ':' + argv.title : id;
+const multi = argv._.length > 1;
+let paipu = [];
 
-getlog(id)
-    .then(xml=>process.stdout.write(
-        argv.xml ? xml : JSON.stringify(convlog(xml, title))))
-    .catch(()=>{ console.error(`${id}: not found.`); process.exit(-1) });
+function convlogs() {
+
+    if (! argv._.length) {
+        process.stdout.write(
+              argv.xml ? paipu.join('\n')
+            : multi    ? JSON.stringify(paipu)
+            :            JSON.stringify(paipu[0]));
+        process.exit(0);
+    }
+
+    let arg = argv._.shift();
+    let [ , id, title ] = (''+arg).match(/^(.*?)(:.*)?$/);
+
+    title = title               ? title
+          : argv.title && multi ? `:${argv.title}(${paipu.length + 1})`
+          : argv.title          ? `:${argv.title}`
+          :                       id;
+
+    getlog(id)
+        .then(xml=>{
+            paipu.push(argv.xml ? xml : convlog(xml, title));
+            convlogs();
+        })
+        .catch(()=>{
+            console.error(`${id}: not found.`);
+            process.exit(-1);
+        });
+}
+
+convlogs();
