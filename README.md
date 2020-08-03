@@ -18,7 +18,7 @@ $ curl -s http://127.0.0.1:8001/tenhou-log/2016031822gm-0009-10011-896da481.json
 ```
 ## 使用方法
 
-### tenhou-log [--title=title] [--xml] *牌譜ID[ :牌譜タイトル ]* ...
+### tenhou-log [--title=*title*] [--xml] *logid*[:*title*] ...
 <dl>
 <dt>--title, -t</dt>
     <dd>牌譜タイトルを指定する<dd>
@@ -41,9 +41,9 @@ $ curl -s http://127.0.0.1:8001/tenhou-log/2016031822gm-0009-10011-896da481.json
 
 #### URL
 <dl>
-<dt>/tenhou-log/<em>牌譜ID</em>.json[ :<em>牌譜タイトル</em> ]</dt>
+<dt>/tenhou-log/<em>logid</em>.json[:<em>title</em>]</dt>
     <dd><em>牌譜ID</em>で指定した牌譜を電脳麻将形式で取得する</dd>
-<dt>/tenhou-log/<em>牌譜ID</em>.xml</dt>
+<dt>/tenhou-log/<em>logid</em>.xml</dt>
     <dd><em>牌譜ID</em>で指定した牌譜を天鳳の形式で取得する</dd>
 </dl>
 
