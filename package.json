@@ -1,6 +1,6 @@
 {
   "name": "@kobalab/tenhou-log",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "天鳳形式の牌譜を電脳麻将形式に変換する",
   "main": "lib/convlog.js",
   "publishConfig": {
