@@ -26,7 +26,10 @@ app.get(`${base}:id.json(\::title)?`, (req, res, next)=>{
     let title = req.params.title ? ':' + req.params.title : id;
     getlog(id)
         .then(xml=>res.json(convlog(xml, title)))
-        .catch(e=>next());
+        .catch(e=>{
+            if (e == 404) next();
+            else          res.status(415).send(`<h1>${e.message}</h1>`);
+        });
 });
 app.get(`${base}:id.xml`, (req, res, next)=>{
     let id = req.params.id;
