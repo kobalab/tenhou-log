@@ -39,8 +39,9 @@ function convlogs() {
             paipu.push(argv.xml ? xml : convlog(xml, title));
             setTimeout(convlogs, 0);
         })
-        .catch(()=>{
-            console.error(`${id}: not found.`);
+        .catch((e)=>{
+            if (e == 404) console.error(`${id}: not found.`);
+            else          console.error(`${id}: ${e.message}`);
             process.exit(-1);
         });
 }
