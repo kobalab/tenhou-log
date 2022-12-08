@@ -1,6 +1,6 @@
 {
   "name": "@kobalab/tenhou-log",
-  "version": "1.1.10",
+  "version": "1.1.11",
   "description": "天鳳形式の牌譜を電脳麻将形式に変換する",
   "main": "lib/convlog.js",
   "publishConfig": {
@@ -11,8 +11,8 @@
     "tenhou-log-server": "./server.js"
   },
   "scripts": {
-    "test": "mocha -u tdd --timeout=5000",
-    "test:cover": "nyc --reporter=lcov --reporter=text node_modules/mocha/bin/_mocha -- -u tdd --no-timeouts"
+    "test": "mocha -u tdd -t 0",
+    "test:cover": "nyc -r lcov -r text npm test"
   },
   "repository": {
     "type": "git",
@@ -35,7 +35,7 @@
     "nyc": "^15.1.0"
   },
   "dependencies": {
-    "express": "^4.17.1",
-    "yargs": "^15.4.1"
+    "express": "^4.18.2",
+    "yargs": "^17.6.2"
   }
 }
