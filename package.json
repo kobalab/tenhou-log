@@ -11,8 +11,8 @@
     "tenhou-log-server": "./server.js"
   },
   "scripts": {
-    "test": "mocha -u tdd --timeout=5000",
-    "test:cover": "nyc --reporter=lcov --reporter=text node_modules/mocha/bin/_mocha -- -u tdd --no-timeouts"
+    "test": "mocha -u tdd -t 0",
+    "test:cover": "nyc -r lcov -r text npm test"
   },
   "repository": {
     "type": "git",
