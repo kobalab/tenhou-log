@@ -17,19 +17,19 @@ suite('request()', ()=>{
         });
     });
     test('GET', (done)=>{
-        request('http://twitter.com/', '', (body)=>{
+        request('https://github.com/', '', (body)=>{
             assert.ok(body.length);
             done();
         });
     });
     test('GET (gzip)', (done)=>{
-        request('http://twitter.com/', 'gzip', (body)=>{
+        request('https://github.com/', 'gzip', (body)=>{
             assert.ok(body.length);
             done();
         });
     });
     test('GET (deflate)', (done)=>{
-        request('http://twitter.com/', 'deflate', (body)=>{
+        request('https://github.com/', 'deflate', (body)=>{
             assert.ok(body.length);
             done();
         });
