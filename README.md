@@ -1,6 +1,6 @@
 # tenhou-log
 
-天鳳形式の牌譜を電脳麻将形式に変換する
+天鳳形式の牌譜を[電脳麻将](https://github.com/kobalab/Majiang)形式に変換する
 
 ## インストール
 ```sh
