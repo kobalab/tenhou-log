@@ -11,7 +11,7 @@
     "tenhou-log-server": "./server.js"
   },
   "scripts": {
-    "test": "mocha -u tdd -t 0",
+    "test": "mocha -u tdd -t 0 --exit",
     "test:cover": "nyc -r lcov -r text npm test"
   },
   "repository": {
