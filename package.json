@@ -35,7 +35,7 @@
     "nyc": "^17.1.0"
   },
   "dependencies": {
-    "express": "^4.21.0",
+    "express": "^4.21.2",
     "yargs": "^17.6.2"
   }
 }
