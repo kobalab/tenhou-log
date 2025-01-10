@@ -5,10 +5,19 @@ const convlog = require('../lib/convlog');
 let error_log;
 console.error = ()=>{ error_log = 1 };
 
-function last_log(paipu) {
+function last_log(paipu, num) {
     let i = paipu.log.length - 1;
-    let j = paipu.log[i].length - 1;
-    return paipu.log[i][j];
+    if (num) {
+        let logs = [];
+        for (let j = paipu.log[i].length - num; j < paipu.log[i].length; j++) {
+            logs.push(paipu.log[i][j]);
+        }
+        return logs;
+    }
+    else {
+        let j = paipu.log[i].length - 1;
+        return paipu.log[i][j];
+    }
 }
 
 suite('convlog()', ()=>{
@@ -323,16 +332,21 @@ suite('convlog()', ()=>{
             assert.deepEqual(
                 last_log(convlog(xml+'<N who="0" m="16384" />'
                                     +'<DORA hai="14" />'
-                                    +'<T62/>')),
-                 {kaigang:{baopai:'m4'}});
+                                    +'<T62/>'), 3),
+                [ {gang:{l:3,m:'p8888'}},
+                  {gangzimo:{l:3,p:'p7'}},
+                  {kaigang:{baopai:'m4'}} ]);
         });
         test('加槓 → 打牌後開槓', ()=>{
             assert.deepEqual(
-                last_log(convlog(xml+'<N who="2" m="26882" />'
+                last_log(convlog(xml+'<N who="2" m="6705" />'
                                     +'<V70/>'
                                     +'<DORA hai="62" />'
-                                    +'<F70/>')),
-                {kaigang:{baopai:'p7'}});
+                                    +'<F70/>'), 4),
+                [ {gang:{l:1,m:'m505+5'}},
+                  {gangzimo:{l:1,p:'p9'}},
+                  {dapai:{l:1,p:'p9_'}},
+                  {kaigang:{baopai:'p7'}} ]);
         });
         test('加槓 → 連続した加槓で開槓', ()=>{
             assert.deepEqual(
@@ -340,8 +354,12 @@ suite('convlog()', ()=>{
                                     +'<W115/>'
                                     +'<N who="3" m="45586" />'
                                     +'<DORA hai="78" />'
-                                    +'<W13/>')),
-                {kaigang:{baopai:'s2'}});
+                                    +'<W13/>'), 5),
+                [ {gang:{l:2,m:'z555=5'}},
+                  {gangzimo:{l:2,p:'z2'}},
+                  {gang:{l:2,m:'z333=3'}},
+                  {gangzimo:{l:2,p:'m4'}},
+                  {kaigang:{baopai:'s2'}} ]);
         });
         test('加槓 → 直後の暗槓で開槓', ()=>{
             assert.deepEqual(
@@ -349,16 +367,25 @@ suite('convlog()', ()=>{
                                     +'<V117/>'
                                     +'<N who="2" m="29696" />'
                                     +'<DORA hai="38" />'
-                                    +'<DORA hai="131" />')),
-                 {kaigang:{baopai:'p1'}});
+                                    +'<DORA hai="131" />'
+                                    +'<V47>'), 6),
+                 [ {gang:{l:1,m:'s999=9'}},
+                   {gangzimo:{l:1,p:'z3'}},
+                   {gang:{l:1,m:'z3333'}},
+                   {gangzimo:{l:1,p:'p3'}},
+                   {kaigang:{baopai:'p1'}},
+                   {kaigang:{baopai:'z6'}} ]);
         });
         test('大明槓 → 打牌後開槓', ()=>{
             assert.deepEqual(
                 last_log(convlog(xml+'<N who="2" m="26882" />'
                                     +'<V70/>'
                                     +'<DORA hai="62" />'
-                                    +'<F70/>')),
-                {kaigang:{baopai:'p7'}});
+                                    +'<F70/>'), 4),
+                [ {fulou:{l:1,m:'s9999='}},
+                  {gangzimo:{l:1,p:'p9'}},
+                  {dapai:{l:1,p:'p9_'}},
+                  {kaigang:{baopai:'p7'}} ]);
         });
         test('大明槓 → 連続した加槓で開槓', ()=>{
             assert.deepEqual(
@@ -366,8 +393,12 @@ suite('convlog()', ()=>{
                                     +'<T112/>'
                                     +'<N who="0" m="43539" />'
                                     +'<DORA hai="94" />'
-                                    +'<T64/>')),
-                {kaigang:{baopai:'s6'}});
+                                    +'<T64/>'), 5),
+                [ {fulou:{l:3,m:'p1111='}},
+                  {gangzimo:{l:3,p:'z2'}},
+                  {gang:{l:3,m:'z222-2'}},
+                  {gangzimo:{l:3,p:'p8'}},
+                  {kaigang:{baopai:'s6'}} ]);
         });
         test('大明槓 → 直後の暗槓で開槓', ()=>{
             assert.deepEqual(
@@ -375,8 +406,14 @@ suite('convlog()', ()=>{
                                     +'<V84/>'
                                     +'<N who="2" m="21504" />'
                                     +'<DORA hai="83" />'
-                                    +'<DORA hai="96" />')),
-                {kaigang:{baopai:'s3'}});
+                                    +'<DORA hai="96" />'
+                                    +'<V47>'), 6),
+                [ {fulou:{l:1,m:'p6666='}},
+                  {gangzimo:{l:1,p:'s4'}},
+                  {gang:{l:1,m:'s4444'}},
+                  {gangzimo:{l:1,p:'p3'}},
+                  {kaigang:{baopai:'s3'}},
+                  {kaigang:{baopai:'s7'}} ]);
         });
     });
 
