@@ -4,7 +4,7 @@
 
 const yargs   = require('yargs');
 const express = require('express');
-const getlog  = require('./lib/getlog');
+const getlog  = require('./lib/getlog')();
 const convlog = require('./lib/convlog');
 
 const argv = yargs

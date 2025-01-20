@@ -3,7 +3,7 @@
 "use strict";
 
 const yargs   = require('yargs');
-const getlog  = require('./lib/getlog');
+const getlog  = require('./lib/getlog')();
 const convlog = require('./lib/convlog');
 
 const argv = yargs
