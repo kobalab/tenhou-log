@@ -3,8 +3,13 @@
 天鳳形式の牌譜を[電脳麻将](https://github.com/kobalab/Majiang)形式に変換する
 
 ## インストール
+コマンドラインから使用する場合
 ```sh
 $ npm i -g @kobalab/tenhou-log
+```
+ライブラリとして使用する場合
+```sh
+$ npm i @kobalab/tenhou-log
 ```
 ## 使用例
 コマンドラインから
