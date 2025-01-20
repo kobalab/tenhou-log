@@ -27,8 +27,9 @@ app.get(`${base}:id.json:title(:.{0,})?`, (req, res, next)=>{
     getlog(id)
         .then(xml=>res.json(convlog(xml, title)))
         .catch(e=>{
-            if (e == 404) next();
-            else          res.status(415).send(`<h1>${e.message}</h1>`);
+            if      (e == 404) next();
+            else if (e == 500) res.status(502).send(`<h1>Bad Gateway</h1>`)
+            else               res.status(415).send(`<h1>${e.message}</h1>`);
         });
 });
 app.get(`${base}:id.xml`, (req, res, next)=>{

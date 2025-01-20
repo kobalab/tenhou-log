@@ -40,8 +40,9 @@ function convlogs() {
             setTimeout(convlogs, 0);
         })
         .catch((e)=>{
-            if (e == 404) console.error(`${id}: not found.`);
-            else          console.error(`${id}: ${e.message}`);
+            if      (e == 404) console.error(`${id}: not found.`);
+            else if (e == 500) console.error('Server Error.');
+            else               console.error(`${id}: ${e.message}`);
             process.exit(-1);
         });
 }
