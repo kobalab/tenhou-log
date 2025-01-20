@@ -1,6 +1,6 @@
 const assert  = require('assert');
 
-const convlog = require('../lib/convlog');
+const convlog = require('../');
 
 let error_log;
 console.error = ()=>{ error_log = 1 };

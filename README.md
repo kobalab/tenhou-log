@@ -3,8 +3,13 @@
 天鳳形式の牌譜を[電脳麻将](https://github.com/kobalab/Majiang)形式に変換する
 
 ## インストール
+コマンドラインから使用する場合
 ```sh
 $ npm i -g @kobalab/tenhou-log
+```
+ライブラリとして使用する場合
+```sh
+$ npm i @kobalab/tenhou-log
 ```
 ## 使用例
 コマンドラインから
@@ -15,6 +20,12 @@ $ tenhou-log 2016031822gm-0009-10011-896da481
 ```sh
 $ tenhou-log-server &
 $ curl -s http://127.0.0.1:8001/tenhou-log/2016031822gm-0009-10011-896da481.json
+```
+ライブラリとして使用
+```javascript
+const convlog = require('@kobalab/tenhou-log');
+
+let paipu = convlog(xml, '2016031822gm-0009-10011-896da481')
 ```
 ## 使用方法
 
@@ -46,6 +57,14 @@ $ curl -s http://127.0.0.1:8001/tenhou-log/2016031822gm-0009-10011-896da481.json
 <dt>/tenhou-log/<em>logid</em>.xml</dt>
     <dd><em>牌譜ID</em>で指定した牌譜を天鳳の形式で取得する</dd>
 </dl>
+
+### convlog(xml, log_id)
+  - **xml** - string
+  - **log_id** - string
+  - _返り値_ - object
+
+**xml** で指定した天鳳のXML形式の牌譜を電脳麻将形式に変換し、返す。
+**log_id** を指定した場合は牌譜タイトルの最後に **log_id** を追加する。
 
 ## ライセンス
 [MIT](https://github.com/kobalab/tenhou-log/blob/master/LICENSE)
