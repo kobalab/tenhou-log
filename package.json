@@ -32,7 +32,7 @@
   "homepage": "https://github.com/kobalab/tenhou-log#readme",
   "devDependencies": {
     "mocha": "^12.0.0",
-    "nyc": "^17.1.0"
+    "nyc": "^18.0.0"
   },
   "dependencies": {
     "express": "^4.21.2",
