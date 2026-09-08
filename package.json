@@ -36,6 +36,6 @@
   },
   "dependencies": {
     "express": "^5.2.1",
-    "yargs": "^17.7.2"
+    "yargs": "^17.7.3"
   }
 }
